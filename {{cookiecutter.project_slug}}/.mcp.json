@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "vector-memory": {
+      "command": "VECTOR_MEMORY_COMMAND_HERE",
+      "args": ["--working-dir", "FULL_PATH_TO_THIS_DIRECTORY"]
+    }
+  }
+}

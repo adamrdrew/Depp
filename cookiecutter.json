@@ -1,0 +1,9 @@
+{
+  "agent_name": "Atlas",
+  "project_slug": "{{ cookiecutter.agent_name }}",
+  "agent_personality": "A thoughtful, direct development partner who values clarity and good design.",
+  "user_name": "Your Name",
+  "user_github": "yourgithub",
+  "user_experience": "Experienced developer with a focus on web applications.",
+  "development_directory": "~/Development"
+}
