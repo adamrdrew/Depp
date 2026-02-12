@@ -6,7 +6,7 @@ A [cookiecutter](https://cookiecutter.readthedocs.io/) template for creating a p
 
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed and working
 - Python 3.8+ with [cookiecutter](https://pypi.org/project/cookiecutter/): `pip install cookiecutter`
-- (Optional) [vector-memory-mcp](https://github.com/pierre-cheneau/vector-memory-mcp) for semantic long-term memory
+- (Optional) A vector memory MCP server for semantic long-term memory
 
 ## Usage
 
@@ -59,26 +59,22 @@ Or set it as a Claude Code project directory in your IDE integration.
 
 ### 2. Configure vector memory (optional but recommended)
 
-The generated `.mcp.json` has a placeholder for the vector memory MCP server. To enable semantic long-term memory:
+The generated `.mcp.json` has a placeholder for the vector memory MCP server. To enable semantic long-term memory, you need a vector memory MCP server that provides `store_memory`, `search_memories`, `list_recent_memories`, `get_memory_stats`, and `clear_old_memories` tools.
 
-1. Clone [vector-memory-mcp](https://github.com/pierre-cheneau/vector-memory-mcp):
-   ```bash
-   git clone https://github.com/pierre-cheneau/vector-memory-mcp.git
-   ```
+Edit `.mcp.json` in your agent directory to point at your chosen server:
 
-2. Edit `.mcp.json` in your agent directory:
-   ```json
-   {
-     "mcpServers": {
-       "vector-memory": {
-         "command": "/path/to/vector-memory-mcp/main.py",
-         "args": ["--working-dir", "/full/path/to/YourAgent"]
-       }
-     }
-   }
-   ```
+```json
+{
+  "mcpServers": {
+    "vector-memory": {
+      "command": "your-vector-memory-server",
+      "args": ["--working-dir", "/full/path/to/YourAgent"]
+    }
+  }
+}
+```
 
-   The server requires Python 3.8+ and [uv](https://docs.astral.sh/uv/). Dependencies are managed automatically via the script's inline metadata.
+Without vector memory configured, the agent still works — it just uses the other three memory layers (session buffer, notes, skills). Vector memory adds associative recall across sessions.
 
 ### 3. Start a conversation
 
